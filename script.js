@@ -42,6 +42,17 @@ document.addEventListener('dragstart', function(e) {
     return false;
 });
 
+// Handle contact form submission and redirect to thank you page
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('form[name="contact"]');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'thank-you.html';
+        });
+    }
+});
+
 // Calculate age dynamically
 function calculateAge(birthDate) {
     const today = new Date();
