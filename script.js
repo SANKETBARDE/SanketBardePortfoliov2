@@ -1,3 +1,16 @@
+// Loading screen functionality
+window.addEventListener('load', function() {
+    const loadingScreen = document.querySelector('.loading-screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        
+        // Remove from DOM after transition completes
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }
+});
+
 // Calculate age dynamically
 function calculateAge(birthDate) {
     const today = new Date();

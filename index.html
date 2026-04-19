@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">Bored of slow loading? Buy more RAM!</div>
+    </div>
     <div class="main">
         <nav>
             <div class="logo">
@@ -358,7 +362,8 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form name="contact" method="POST" data-netlify="true">
+                        <input type="hidden" name="form-name" value="contact">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
