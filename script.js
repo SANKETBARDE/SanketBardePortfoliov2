@@ -42,13 +42,28 @@ document.addEventListener('dragstart', function(e) {
     return false;
 });
 
-// Handle contact form submission and redirect to thank you page
+// Handle contact form submission with AJAX and redirect to thank you page
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('form[name="contact"]');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            window.location.href = 'thank-you.html';
+            
+            const formData = new FormData(contactForm);
+            const formName = formData.get('form-name');
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                window.location.href = 'thank-you.html';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                window.location.href = 'thank-you.html';
+            });
         });
     }
 });
