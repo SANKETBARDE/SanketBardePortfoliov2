@@ -205,4 +205,55 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinks.classList.toggle('active');
         });
     }
+    
+    // Nike video container click to play inline
+    const nikeVideoContainer = document.getElementById('nike-video-container');
+    if (nikeVideoContainer) {
+        nikeVideoContainer.addEventListener('click', function() {
+            // Hide thumbnail and play button
+            const thumbnail = nikeVideoContainer.querySelector('.video-thumbnail');
+            const playOverlay = nikeVideoContainer.querySelector('.play-button-overlay');
+            
+            if (thumbnail) thumbnail.style.display = 'none';
+            if (playOverlay) playOverlay.style.display = 'none';
+            
+            // Create and show video
+            const nikeVideo = document.createElement('video');
+            nikeVideo.src = '/projects/Nike/nikewebiste.mp4';
+            nikeVideo.controls = true;
+            nikeVideo.autoplay = true;
+            nikeVideo.style.width = '100%';
+            nikeVideo.style.height = '100%';
+            nikeVideo.style.objectFit = 'cover';
+            
+            nikeVideoContainer.appendChild(nikeVideo);
+            
+            // Optional: Add close button to revert to thumbnail
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '×';
+            closeBtn.style.position = 'absolute';
+            closeBtn.style.top = '10px';
+            closeBtn.style.right = '10px';
+            closeBtn.style.background = 'rgba(0,0,0,0.7)';
+            closeBtn.style.color = 'white';
+            closeBtn.style.border = 'none';
+            closeBtn.style.borderRadius = '50%';
+            closeBtn.style.width = '30px';
+            closeBtn.style.height = '30px';
+            closeBtn.style.cursor = 'pointer';
+            closeBtn.style.zIndex = '10';
+            closeBtn.style.fontSize = '16px';
+            closeBtn.title = 'Close video';
+            
+            closeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                nikeVideoContainer.removeChild(nikeVideo);
+                nikeVideoContainer.removeChild(closeBtn);
+                if (thumbnail) thumbnail.style.display = 'block';
+                if (playOverlay) playOverlay.style.display = 'flex';
+            });
+            
+            nikeVideoContainer.appendChild(closeBtn);
+        });
+    }
 });
